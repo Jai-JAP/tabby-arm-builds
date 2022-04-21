@@ -2,7 +2,8 @@ name: Build
 
 on:
   push:
-    paths: latest_tag
+    paths: 
+      - 'latest_tag'
   workflow_dispatch:
 
 jobs:
