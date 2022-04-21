@@ -10,10 +10,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Fetch & Push
+      - name: Fetch release
         run: |
           curl --silent "https://api.github.com/repos/Eugeny/Tabby/releases/latest" | jq -r '.tag_name' > ./latest_tag
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
-          git add . && git commit -m 'Update Tag' || true
+
+      - name: Check for modified files
+        id: git-check
+        run: echo ::set-output name=modified::$([ -z "`git status --porcelain`" ] && echo "false" || echo "true")
+
+      - name: Commit latest release version
+        if: steps.git-check.outputs.modified == 'true'
+        run: |
+          git config --global user.name 'Your Name'
+          git config --global user.email 'your-email@users.noreply.github.com'
+          git commit -am "New release version"
           git push
