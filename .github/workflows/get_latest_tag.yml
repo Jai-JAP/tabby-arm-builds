@@ -12,7 +12,7 @@ jobs:
 
       - name: Fetch & Push
         run: |
-          curl --silent "https://api.github.com/repos/$1/releases/latest" | jq -r '.tag_name' > latest_tag
+          curl --silent "https://api.github.com/repos/Eugeny/Tabby/releases/latest" | jq -r '.tag_name' > ./latest_tag
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
           git add .
