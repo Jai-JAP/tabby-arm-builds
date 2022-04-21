@@ -80,7 +80,7 @@ jobs:
             rm -rf Tabby"
             
       - name: Upload
-        uses: ncipollo/release-action
+        uses: ncipollo/release-action@v1
         with: 
           artifacts: "/github/workspace/pkgs/*"
           body: "# ${{env.RELNAME}} \nRefer https://github.com/Eugeny/tabby/releases/tag/v${{env.REL}} \narmv7l builds use electron 17.0.0"
