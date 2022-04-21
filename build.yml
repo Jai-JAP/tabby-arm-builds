@@ -14,8 +14,9 @@ jobs:
 
       - name: Setup env
         run: |
-          echo "REL=$(curl --silent "https://api.github.com/repos/$1/releases/latest" | jq -r '.tag_name' | sed s/v//g)" >> $GITHUB_ENV
-          echo "RELNAME=Alpha $(curl --silent "https://api.github.com/repos/$1/releases/latest" | jq -r '.tag_name' | sed s/v//g | cut -d '.' -f 3)" >> $GITHIB_ENV
+          echo "REL=$(cat latest_tag)" >> $GITHUB_ENV
+          echo "RELNAME=Alpha $(cat latest_tag | cut -d '.' -f 3)" >> $GITHIB_ENV
+
        - name: Set up multiarch/qemu-user-static
         run: |
           docker run --rm --privileged multiarch/qemu-user-static:register --reset
@@ -82,5 +83,5 @@ jobs:
         with: 
           artifacts: "/github/workspace/pkgs/*"
           body: "# ${{env.RELNAME}} \nRefer https://github.com/Eugeny/tabby/releases/tag/v${{env.REL}} \narmv7l builds use electron 17.0.0"
-          name: ${{env.REL}}
+          name: v${{env.REL}}
           tag: v${{env.REL}}
