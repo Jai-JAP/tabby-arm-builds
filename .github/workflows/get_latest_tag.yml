@@ -4,7 +4,7 @@ on:
     - cron: "* 6 * * *"
   workflow_dispatch:
 jobs:
-  Fetch release:
+  Fetch:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
