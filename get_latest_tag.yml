@@ -1,0 +1,18 @@
+name: Get latest Tabby tag
+on:
+  schedule:
+    - cron: "* 6 * * *"
+  workflow_dispatch:
+jobs:
+  Fetch release:
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Fetch & Push
+        run: |
+          curl --silent "https://api.github.com/repos/$1/releases/latest" | jq -r '.tag_name' > latest_tag
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git add .
+          git commit -m 'Update Tag'
+  
