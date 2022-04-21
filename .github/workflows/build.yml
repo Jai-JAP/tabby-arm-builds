@@ -16,7 +16,7 @@ jobs:
       - name: Setup env
         run: |
           echo "REL=$(cat latest_tag)" >> $GITHUB_ENV
-          echo "RELNAME=Alpha $(cat latest_tag | cut -d '.' -f 3)" >> $GITHIB_ENV
+          echo "RELNAME=Alpha $(cat latest_tag | cut -d '.' -f 3)" >> $GITHUB_ENV
 
        - name: Set up multiarch/qemu-user-static
         run: |
