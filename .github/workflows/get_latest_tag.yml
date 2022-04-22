@@ -20,8 +20,6 @@ jobs:
 
       - name: Commit latest release version
         if: steps.git-check.outputs.modified == 'true'
-        run: |
-          git config --global user.email "jai.jap.318@gmail.com"
-          git config --global user.name "Jai-JAP"
-          git commit -am "New release version"
-          git push https://jai-jap:${{secrets.TOKEN}}@github.com/jai-jap/tabby-arm-builds
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{secrets.TOKEN}}
