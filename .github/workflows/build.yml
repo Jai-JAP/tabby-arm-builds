@@ -4,6 +4,7 @@ on:
   push:
     paths: 
       - 'latest_tag'
+      - '.github/workflows/build.yml'
   workflow_dispatch:
 
 jobs:
@@ -26,9 +27,9 @@ jobs:
         with:
           args: >
             bash -c
-            "curl -fsSL https://deb.nodesource.com/setup_16.x | bash - &&
+            "curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - &&
             apt update &&
-            apt install make gcc g++ git ruby libarchive-tools nodejs -y &&
+            apt install make gcc g++ git ruby libarchive-tools nodejs npm -y &&
             gem install fpm &&
             npm i -g yarn &&
             cd /github/workspace &&
@@ -54,9 +55,9 @@ jobs:
         with:
           args: >
             bash -c
-            "curl -fsSL https://deb.nodesource.com/setup_16.x | bash - &&
+            "curl -fsSL https://deb.nodesource.com/setup_16.x | suso -E bash - &&
             apt update &&
-            apt install make gcc g++ git ruby libarchive-tools nodejs -y &&
+            apt install make gcc g++ git ruby libarchive-tools nodejs npm -y &&
             gem install fpm &&
             npm i -g yarn &&
             cd /github/workspace &&
