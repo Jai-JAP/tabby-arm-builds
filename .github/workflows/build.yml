@@ -7,11 +7,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  Build:
+  Build-arm64:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        arch: [arm64, armhf]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -25,7 +22,7 @@ jobs:
         run: |
           docker run --rm --privileged multiarch/qemu-user-static:register --reset
 
-      - uses: docker://multiarch/ubuntu-core:${{matrix.arch}}-bionic
+      - uses: docker://multiarch/ubuntu-core:arm64-bionic
         with:
           args: >
             bash -c
@@ -37,7 +34,58 @@ jobs:
             cd /github/workspace &&
             git clone https://github.com/Eugeny/Tabby.git -b v${{env.REL}} --single-branch &&
             cd ./Tabby &&
-            [[ ${{matrix.arch}} == "armhf" ]] && sed -i '/electron/c\    \"electron\" : \"17.0.0\",' package.json
+            cd app &&
+            yarn --network-timeout 1000000 &&
+            cd .. &&
+            yarn --network-timeout 1000000 &&
+            scripts/build-native.js &&
+            yarn run build &&
+            scripts/prepackage-plugins.js &&
+            USE_SYSTEM_FPM=true scripts/build-linux.js &&
+            mkdir -p ../pkgs &&
+            mv ./dist/*.deb ../pkgs &&
+            mv ./dist/*.rpm ../pkgs &&
+            mv ./dist/*.pacman ../pkgs &&
+            mv ./dist/*.tar.gz ../pkgs &&
+            cd .. &&
+            rm -rf Tabby"
+            
+      - name: Upload
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: "/github/workspace/pkgs/*"
+          body: "# ${{env.RELNAME}} \nRefer https://github.com/Eugeny/tabby/releases/tag/v${{env.REL}} \narmv7l builds use electron 17.0.0"
+          name: v${{env.REL}}
+          tag: v${{env.REL}}
+  Build-armhf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup env
+        run: |
+          echo "REL=$(cat latest_tag)" >> $GITHUB_ENV
+          echo "RELNAME=Alpha $(cat latest_tag | cut -d '.' -f 3)" >> $GITHUB_ENV
+
+      - name: Set up multiarch/qemu-user-static
+        run: |
+          docker run --rm --privileged multiarch/qemu-user-static:register --reset
+
+      - uses: docker://multiarch/ubuntu-core:arm64-bionic
+        with:
+          args: >
+            bash -c
+            "apt update && apt install curl -y &&
+            curl -fsSL https://deb.nodesource.com/setup_16.x | bash - &&
+            apt install make gcc g++ git ruby libarchive-tools nodejs rpm libsecret-1-dev libfontconfig1-dev -y &&
+            gem install fpm &&
+            npm i -g yarn &&
+            cd /github/workspace &&
+            git clone https://github.com/Eugeny/Tabby.git -b v${{env.REL}} --single-branch &&
+            cd ./Tabby &&
+            sed -i '/electron/c\    \"electron\" : \"17.0.0\",' package.json &&
             cd app &&
             yarn --network-timeout 1000000 &&
             cd .. &&
