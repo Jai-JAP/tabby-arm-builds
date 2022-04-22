@@ -8,9 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          persist-credentials: false
+        uses: actions/checkout@v1
 
       - name: Fetch release
         run: |
@@ -20,8 +18,11 @@ jobs:
         id: git-check
         run: echo ::set-output name=modified::$([ -z "`git status --porcelain`" ] && echo "false" || echo "true")
 
+
       - name: Commit latest release version
         if: steps.git-check.outputs.modified == 'true'
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{secrets.TOKEN}}
+        run: |
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git commit -am "New release version"
+          git push
