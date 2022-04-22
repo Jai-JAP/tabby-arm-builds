@@ -14,7 +14,7 @@ cd tabby
 latest_release=$(curl --silent "https://api.github.com/repos/$1/releases/latest" | jq -r '.tag_name')
 git checkout ${latest_release}
 # for armhf downgrade electron to 17.0.0 in package.json
-sed -i package.json 's/^    "electron": "*",$/    "electron": "17.0.0",/' > package.json
+sed -i '/electron/c\    \"electron\" : \"17.0.0\",' package.json
 
 sudo npm i -g yarn
 sed -i "s/['deb', 'tar.gz', 'rpm', 'pacman']/['deb']/" scripts/build-linux.js
