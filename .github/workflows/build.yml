@@ -27,7 +27,7 @@ jobs:
         with:
           args: >
             bash -c
-            "curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - &&
+            "wget -qO- https://deb.nodesource.com/setup_16.x | bash - &&
             apt update &&
             apt install make gcc g++ git ruby libarchive-tools nodejs npm -y &&
             gem install fpm &&
@@ -55,7 +55,7 @@ jobs:
         with:
           args: >
             bash -c
-            "curl -fsSL https://deb.nodesource.com/setup_16.x | suso -E bash - &&
+            "wget -qO- https://deb.nodesource.com/setup_16.x | bash - &&
             apt update &&
             apt install make gcc g++ git ruby libarchive-tools nodejs npm -y &&
             gem install fpm &&
