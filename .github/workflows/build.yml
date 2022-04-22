@@ -85,8 +85,7 @@ jobs:
             cd /github/workspace &&
             git clone https://github.com/Eugeny/Tabby.git -b v${{env.REL}} --single-branch &&
             cd ./Tabby &&
-            sed -i '/electron/c\    \"electron\" : \"17.0.0\",' package.json &&
-            sed 's/"electron":/& \"17.0.0\",/' package.json
+            sed -i '/\"electron\":/c\    \"electron\" : \"17.0.0\",' package.json &&
             cd app &&
             yarn --network-timeout 1000000 &&
             cd .. &&
