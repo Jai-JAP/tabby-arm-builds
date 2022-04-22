@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  Build:
+  Build-arm64:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -50,6 +50,30 @@ jobs:
             cd .. &&
             rm -rf Tabby"
 
+      - name: Upload
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: "/github/workspace/pkgs/*"
+          body: "# ${{env.RELNAME}} \nRefer https://github.com/Eugeny/tabby/releases/tag/v${{env.REL}} \narmv7l builds use electron 17.0.0"
+          name: v${{env.REL}}
+          tag: v${{env.REL}}
+
+  Build-armhf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup env
+        run: |
+          echo "REL=$(cat latest_tag)" >> $GITHUB_ENV
+          echo "RELNAME=Alpha $(cat latest_tag | cut -d '.' -f 3)" >> $GITHUB_ENV
+
+      - name: Set up multiarch/qemu-user-static
+        run: |
+          docker run --rm --privileged multiarch/qemu-user-static:register --reset
+
       - uses: docker://multiarch/ubuntu-core:armhf-bionic
         with:
           args: >
@@ -81,7 +105,8 @@ jobs:
             
       - name: Upload
         uses: ncipollo/release-action@v1
-        with: 
+        with:
+          allowUpdates: true
           artifacts: "/github/workspace/pkgs/*"
           body: "# ${{env.RELNAME}} \nRefer https://github.com/Eugeny/tabby/releases/tag/v${{env.REL}} \narmv7l builds use electron 17.0.0"
           name: v${{env.REL}}
