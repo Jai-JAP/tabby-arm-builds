@@ -28,7 +28,7 @@ jobs:
             bash -c
             "apt update && apt install curl -y &&
             curl -fsSL https://deb.nodesource.com/setup_16.x | bash - &&
-            apt install make gcc g++ git ruby libarchive-tools nodejs libsecret-1-dev libfontconfig1-dev -y &&
+            apt install make gcc g++ git ruby libarchive-tools nodejs rpm libsecret-1-dev libfontconfig1-dev -y &&
             gem install fpm &&
             npm i -g yarn &&
             cd /github/workspace &&
@@ -56,7 +56,7 @@ jobs:
             bash -c
             "apt update && apt install curl -y &&
             curl -fsSL https://deb.nodesource.com/setup_16.x | bash - &&
-            apt install make gcc g++ git ruby libarchive-tools nodejs libsecret-1-dev libfontconfig1-dev -y &&
+            apt install make gcc g++ git ruby libarchive-tools nodejs rpm libsecret-1-dev libfontconfig1-dev -y &&
             gem install fpm &&
             npm i -g yarn &&
             cd /github/workspace &&
