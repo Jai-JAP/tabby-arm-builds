@@ -4,7 +4,6 @@ on:
   push:
     paths: 
       - 'latest_tag'
-      - '.github/workflows/build.yml'
   workflow_dispatch:
 
 jobs:
@@ -87,4 +86,3 @@ jobs:
           body: "# ${{env.RELNAME}} \nRefer https://github.com/Eugeny/tabby/releases/tag/v${{env.REL}} \narmv7l builds use electron 17.0.0"
           name: v${{env.REL}}
           tag: v${{env.REL}}
-          token: ${{secrets.TOKEN}}
