@@ -34,7 +34,7 @@ jobs:
             gem install fpm --no-document &&
             npm i -g yarn &&
             cd /github/workspace &&
-            git clone https://github.com/Eugeny/Tabby.git -b v${{env.REL}} --single-branch &&
+            git clone https://github.com/Jai-JAP/Tabby.git -b v${{env.REL}} --single-branch &&
             cd ./Tabby &&
             cd app &&
             yarn --network-timeout 1000000 &&
