@@ -31,7 +31,7 @@ jobs:
             "apt update && apt install curl lsb-release gnupg -y &&
             curl -fsSL https://deb.nodesource.com/setup_16.x | bash - &&
             apt install make gcc g++ git ruby libarchive-tools nodejs rpm libsecret-1-dev libfontconfig1-dev -y &&
-            gem install fpm &&
+            gem --no-document install fpm &&
             npm i -g yarn &&
             cd /github/workspace &&
             git clone https://github.com/Eugeny/Tabby.git -b v${{env.REL}} --single-branch &&
@@ -83,7 +83,7 @@ jobs:
             "apt update && apt install curl lsb-release gnupg -y &&
             curl -fsSL https://deb.nodesource.com/setup_16.x | bash - &&
             apt install make gcc g++ git ruby libarchive-tools nodejs rpm libsecret-1-dev libfontconfig1-dev -y &&
-            gem install fpm &&
+            gem --no-document install fpm &&
             npm i -g yarn &&
             cd /github/workspace &&
             git clone https://github.com/Eugeny/Tabby.git -b v${{env.REL}} --single-branch &&
