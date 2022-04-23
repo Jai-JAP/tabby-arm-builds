@@ -1,4 +1,4 @@
-name: Get latest Tabby tag
+name: Get latest release
 on:
   schedule:
     - cron: "0 */6 * * *"
