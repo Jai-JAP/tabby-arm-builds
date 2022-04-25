@@ -35,7 +35,6 @@ jobs:
             npm i -g yarn &&
             cd /github/workspace &&
             git clone https://github.com/Eugeny/Tabby.git -b v${{env.REL}} --single-branch &&
-            export ARCH=arm64 &&
             cd ./Tabby &&
             cd app &&
             yarn --network-timeout 1000000 &&
@@ -87,8 +86,7 @@ jobs:
             gem install fpm --no-document &&
             npm i -g yarn &&
             cd /github/workspace &&
-            git clone https://github.com/Eugeny/Tabby.git -b v${{env.REL}} --single-branch &&
-            export ARCH=armv7l &&
+            git clone https://github.com/Jai-JAP/Tabby.git -b v${{env.REL}} --single-branch &&
             cd ./Tabby &&
             sed -i '/\"electron\":/c\    \"electron\" : \"17.0.0\",' package.json &&
             cd app &&
