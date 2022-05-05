@@ -3,8 +3,8 @@ https://github.com/Eugeny/tabby
 
 Finished debs are on the [Releases](https://github.com/Jai-JAP/tabby-arm-builds/releases) page.
 
-## To compile and make a deb:
-```bash
+## To compile Tabby on arm linux:
+```
 sudo apt install -y libsecret-1-dev libfontconfig1-dev libarchive-tools
 #Install nodejs 16
 curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
