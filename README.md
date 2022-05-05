@@ -7,10 +7,11 @@ Latest Tabby releases are automatically compiled for armv7l/arm64 using Github w
 
 ## To compile Tabby on arm linux:
 ```
-sudo apt install -y libsecret-1-dev libfontconfig1-dev libarchive-tools jq build-essentials git curl
+sudo apt install -y libsecret-1-dev libfontconfig1-dev libarchive-tools jq ruby build-essentials git curl
 #Install nodejs 16
 curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 sudo apt install -y nodejs
+sudo gem install fpm --no-document
 
 git clone https://github.com/eugeny/tabby -b $(curl --silent "https://api.github.com/repos/$1/releases/latest" | jq -r '.tag_name') --single-branch
 cd tabby
