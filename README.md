@@ -1,7 +1,9 @@
 # tabby-arm-builds
 https://github.com/Eugeny/tabby
 
-Finished builds for the latest Tabby version are on the [Releases](https://github.com/Jai-JAP/tabby-arm-builds/releases) page.
+Finished builds are available on the [Releases](https://github.com/Jai-JAP/tabby-arm-builds/releases) page.
+
+Latest Tabby releases are automatically compiled for armv7l/arm64 using Github workflows.
 
 ## To compile Tabby on arm linux:
 ```
