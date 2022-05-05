@@ -1,18 +1,17 @@
 # tabby-arm-builds
 https://github.com/Eugeny/tabby
 
-Finished debs are on the [Releases](https://github.com/Jai-JAP/tabby-arm-builds/releases) page.
+Finished builds for the latest Tabby version are on the [Releases](https://github.com/Jai-JAP/tabby-arm-builds/releases) page.
 
 ## To compile Tabby on arm linux:
 ```
-sudo apt install -y libsecret-1-dev libfontconfig1-dev libarchive-tools
+sudo apt install -y libsecret-1-dev libfontconfig1-dev libarchive-tools jq
 #Install nodejs 16
 curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 
-git clone https://github.com/eugeny/tabby
+git clone https://github.com/eugeny/tabby -b $(curl --silent "https://api.github.com/repos/$1/releases/latest" | jq -r '.tag_name') --single-branch
 cd tabby
-latest_release=$(curl --silent "https://api.github.com/repos/$1/releases/latest" | jq -r '.tag_name')
-git checkout ${latest_release}
+
 # for armhf downgrade electron to 17.0.0 in package.json
 sed -i '/\"electron\":/c\    \"electron\" : \"17.0.0\",' package.json
 
@@ -28,5 +27,5 @@ yarn run build
 scripts/prepackage-plugins.js
 scripts/build-linux.js
 
-#Deb will be in dist subfolder
+#Build artifacts will be in dist subfolder
 ```
