@@ -36,11 +36,7 @@ jobs:
             cd /github/workspace &&
             git clone https://github.com/Eugeny/Tabby.git -b v${{env.REL}} --single-branch &&
             cd ./Tabby &&
-            cd app &&
             yarn --network-timeout 1000000 &&
-            cd .. &&
-            yarn --network-timeout 1000000 &&
-            scripts/build-native.js &&
             yarn run build &&
             scripts/prepackage-plugins.js &&
             USE_SYSTEM_FPM=true scripts/build-linux.js &&
@@ -89,11 +85,7 @@ jobs:
             git clone https://github.com/Eugeny/Tabby.git -b v${{env.REL}} --single-branch &&
             cd ./Tabby &&
             sed -i '/\"electron\":/c\    \"electron\" : \"17.0.0\",' package.json &&
-            cd app &&
             yarn --network-timeout 1000000 &&
-            cd .. &&
-            yarn --network-timeout 1000000 &&
-            scripts/build-native.js &&
             yarn run build &&
             scripts/prepackage-plugins.js &&
             USE_SYSTEM_FPM=true scripts/build-linux.js &&
