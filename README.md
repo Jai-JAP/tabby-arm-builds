@@ -13,7 +13,7 @@ curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 sudo apt install -y nodejs
 sudo gem install fpm --no-document
 
-git clone https://github.com/eugeny/tabby -b $(curl --silent "https://api.github.com/repos/$1/releases/latest" | jq -r '.tag_name') --single-branch
+git clone https://github.com/eugeny/tabby -b $(curl --silent "https://api.github.com/repos/eugeny/tabby/releases/latest" | jq -r '.tag_name') --single-branch
 cd tabby
 
 # for armhf downgrade electron to 17.0.0 in package.json
