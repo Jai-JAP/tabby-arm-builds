@@ -40,7 +40,7 @@ jobs:
             scripts/build-native.js &&
             yarn run build &&
             scripts/prepackage-plugins.js &&
-            USE_SYSTEM_FPM=true scripts/build-linux.js &&
+            DEBUG=electron-builder USE_SYSTEM_FPM=true scripts/build-linux.js &&
             mkdir -p ../pkgs &&
             mv ./dist/*.deb ../pkgs &&
             mv ./dist/*.rpm ../pkgs &&
@@ -90,7 +90,7 @@ jobs:
             scripts/build-native.js &&
             yarn run build &&
             scripts/prepackage-plugins.js &&
-            USE_SYSTEM_FPM=true scripts/build-linux.js &&
+            DEBUG=electron-builder USE_SYSTEM_FPM=true scripts/build-linux.js &&
             mkdir -p ../pkgs &&
             mv ./dist/*.deb ../pkgs &&
             mv ./dist/*.rpm ../pkgs &&
