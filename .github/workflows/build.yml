@@ -48,7 +48,9 @@ jobs:
             mv ./dist/*.tar.gz ../pkgs &&
             cd .. &&
             rm -rf Tabby"
-            
+        env:
+          CI: 'false'
+
       - name: Upload
         uses: ncipollo/release-action@v1
         with:
@@ -98,7 +100,9 @@ jobs:
             mv ./dist/*.tar.gz ../pkgs &&
             cd .. &&
             rm -rf Tabby"
-            
+        env:
+          CI: 'false'
+
       - name: Upload
         uses: ncipollo/release-action@v1
         with:
