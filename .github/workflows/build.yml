@@ -49,7 +49,7 @@ jobs:
             cd .. &&
             rm -rf Tabby"
         env:
-          CI: 'false'
+          GH_TOKEN: ${{secrets.GH_TOKEN}}
 
       - name: Upload
         uses: ncipollo/release-action@v1
@@ -101,7 +101,7 @@ jobs:
             cd .. &&
             rm -rf Tabby"
         env:
-          CI: 'false'
+          GH_TOKEN: ${{secrets.GH_TOKEN}}
 
       - name: Upload
         uses: ncipollo/release-action@v1
