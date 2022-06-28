@@ -28,7 +28,7 @@ cd .. && yarn --network-timeout 1000000
 scripts/build-native.js
 yarn run build
 scripts/prepackage-plugins.js
-scripts/build-linux.js
+USE_SYSTEM_FPM=true scripts/build-linux.js
 
 #Build artifacts will be in dist subfolder
 ```
