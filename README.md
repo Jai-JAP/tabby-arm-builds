@@ -2,6 +2,7 @@
 https://github.com/Eugeny/tabby
 
 # ***NOTE: [DEPRECATED]***  
+- See https://github.com/Eugeny/tabby/pull/6612
 - Use builds on Upstream Tabby Releases [page](https://github.com/Eugeny/tabby/releases/tag/latest).  
 - This repo will be up for historic purposes.
 
