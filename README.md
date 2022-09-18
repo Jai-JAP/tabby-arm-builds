@@ -1,6 +1,11 @@
 # tabby-arm-builds
 https://github.com/Eugeny/tabby
 
+# ***NOTE: [DEPRECATED]***  
+- Use builds on Upstream Tabby Releases [page](https://github.com/Eugeny/tabby/releases/tag/latest).  
+- This repo will be up for historic purposes.
+
+#  
 Finished builds are available on the [Releases](https://github.com/Jai-JAP/tabby-arm-builds/releases) page.
 
 Latest Tabby releases are automatically compiled for armv7l/arm64 using Github workflows.
